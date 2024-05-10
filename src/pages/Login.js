@@ -20,7 +20,7 @@ const Login = () => {
     console.log(localStorage.getItem("token"));
   }, []);
 
-  const loginAction = (e) => {
+  const loginAction = async (e) => {
     setValidationErrors({});
     e.preventDefault();
     setIsSubmitting(true);
@@ -28,7 +28,7 @@ const Login = () => {
       email: email,
       password: password,
     };
-    axios
+    await axios
       .post("/api/login", payload)
       .then((r) => {
         setIsSubmitting(false);

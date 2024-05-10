@@ -20,10 +20,11 @@ const Dashboard = () => {
   const getUser = () => {
     axios
       .get("/api/user", {
-        headers: { Authorization: "Bearer" + localStorage.getItem("token") },
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
       })
       .then((r) => {
         setUser(r.data);
+        console.log(r.data);
       })
       .catch((e) => {
         console.log(e);
@@ -63,7 +64,7 @@ const Dashboard = () => {
         </div>
 
         <div className="col-12">
-          <h1>Welcome, {user.name} User</h1>
+          <h1>Welcome, {user.name}</h1>
         </div>
       </div>
     </Layout>
