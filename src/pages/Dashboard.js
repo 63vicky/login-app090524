@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import Layout from "../components/Layout";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import Layout from '../components/Layout';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState('');
   useEffect(() => {
     if (
-      localStorage.getItem("token") == "" ||
-      localStorage.getItem("token") == null
+      localStorage.getItem('token') === '' ||
+      localStorage.getItem('token') == null
     ) {
-      navigate("/");
+      navigate('/');
     } else {
       getUser();
     }
@@ -19,8 +19,8 @@ const Dashboard = () => {
 
   const getUser = () => {
     axios
-      .get("/api/user", {
-        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+      .get('/api/user', {
+        headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
       })
       .then((r) => {
         setUser(r.data);
@@ -34,15 +34,15 @@ const Dashboard = () => {
   const logoutAction = () => {
     axios
       .post(
-        "/api/logout",
+        '/api/logout',
         {},
         {
-          headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         }
       )
       .then((r) => {
-        localStorage.setItem("token", "");
-        navigate("/");
+        localStorage.setItem('token', '');
+        navigate('/');
       })
       .catch((e) => {
         console.log(e);
